@@ -1,0 +1,24 @@
+{
+  "name": "user-authentication-system",
+  "version": "1.0.0",
+  "description": "This is a secure user authentication system built with React, Node.js, Express, and MongoDB. It includes data validation, password hashing, token-based authentication, and user registration and login features. The system ensures secure transmission of user data over HTTPS and protects against common web vulnerabilities.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "repository": "https://github.com/Mr-RiVi/user-authentication-system",
+  "author": "Rivindu Fernando",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.1.0",
+    "yarn": "^1.22.19"
+  }
+}
