@@ -14,7 +14,7 @@ app.use(express.json({ limit: '1mb' }));
 databaseConnection();
 
 app.use(cors());
-router.use('/auth', authHandler);
+app.use('/auth', authHandler);
 app.use('/api', router);
 
 const port = process.env.PORT || 3000;

@@ -9,8 +9,19 @@ const authHandler = async (req, res) => {
       .json({ message: 'Username and Password are required.' });
 
   const result = await authService({ username, password });
-  if (!result.success)
-    res.status(result.status).json({ message: 'Username already exists' });
-  return res.json(result.data);
+  if (!result.success && result.status == 401)
+    return res.status(result.status).json({ message: result.message });
+  else if (!result.success && result.status == 500)
+    return res.status(result.status).json({ message: 'Internal Server Error' });
+
+  //send refresh token as a secure HTTP-only cookie
+  res.cookie('jwt', result.data.refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+    maxAge: 24 * 60 * 60 * 1000, //this cookie will be expiring after one day
+  });
+
+  res.json(result.data.accessToken);
 };
 export default authHandler;
